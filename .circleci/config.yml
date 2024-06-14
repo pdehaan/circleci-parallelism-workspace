@@ -22,6 +22,7 @@ jobs:
           node --version > workspace/echo-output
           npm install
           echo "installed"
+          npm test
 
       # Persist the specified paths (workspace/echo-output) into the workspace for use in downstream job.
       - persist_to_workspace:
