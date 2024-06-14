@@ -14,6 +14,7 @@ jobs:
     # executor: my-executor
     docker:
       - image: mcr.microsoft.com/playwright:v1.44.1-jammy
+    parallelism: 3
     working_directory: ~/app
     steps:
       - checkout
