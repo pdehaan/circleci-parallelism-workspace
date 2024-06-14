@@ -6,6 +6,9 @@ version: 2.1
 #       - image: mcr.microsoft.com/playwright:v1.44.1-jammy
 #     working_directory: /tmp
 
+# orbs:
+#     node: circleci/node@1.1.6
+
 jobs:
   flow:
     # executor: my-executor
@@ -30,6 +33,8 @@ jobs:
 
   downstream:
     # executor: my-executor
+    docker:
+      - image: cimg/node:22.2-browsers
     working_directory: /tmp
     steps:
       - attach_workspace:
