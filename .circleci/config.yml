@@ -1,15 +1,19 @@
 version: 2.1
 
-executors:
-  my-executor:
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.44.1-jammy
-    working_directory: /tmp
+# executors:
+#   my-executor:
+#     docker:
+#       - image: mcr.microsoft.com/playwright:v1.44.1-jammy
+#     working_directory: /tmp
 
 jobs:
   flow:
-    executor: my-executor
+    # executor: my-executor
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.44.1-jammy
+    working_directory: /tmp
     steps:
+      - checkout
       - run: |
           mkdir -p workspace
           node --version > workspace/echo-output
@@ -25,7 +29,8 @@ jobs:
             - echo-output
 
   downstream:
-    executor: my-executor
+    # executor: my-executor
+    working_directory: /tmp
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
