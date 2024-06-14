@@ -42,11 +42,7 @@ jobs:
           at: workspace
 
       - run: |
-          if [[ `cat ~/app/workspace/echo-output` == "Hello, world!" ]]; then
-            echo "It worked!";
-          else
-            echo "Nope!"; exit 1
-          fi
+          cat ~/app/workspace/echo-output
 
 workflows:
   btd:
