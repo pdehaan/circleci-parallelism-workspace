@@ -19,14 +19,13 @@ jobs:
       - checkout
       - run: |
           mkdir -p workspace
-          node --version > workspace/echo-output
           npm install
-          echo "installed"
+          npx playwright --version > workspace/playwright-version.txt
           PLAYWRIGHT_BLOB_OUTPUT_DIR=workspace/blob-report PLAYWRIGHT_BLOB_OUTPUT_NAME=report-$CIRCLE_NODE_INDEX.zip npm test -- --reporter=blob
           ls -lR workspace
 
       - store_artifacts:
-          path: workspace/blob-reports
+          path: workspace/blob-report
 
       # Persist the specified paths (workspace/echo-output) into the workspace for use in downstream job.
       - persist_to_workspace:
@@ -35,7 +34,8 @@ jobs:
           root: workspace
           # Must be relative path from root
           paths:
-            - echo-output
+            - playwright-version.txt
+            - blob-report
 
   downstream:
     # executor: my-executor
