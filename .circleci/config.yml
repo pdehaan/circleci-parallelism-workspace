@@ -20,7 +20,8 @@ jobs:
       - run: |
           mkdir -p workspace
           node --version > workspace/echo-output
-          npm i
+          npm install
+          echo "installed"
 
       # Persist the specified paths (workspace/echo-output) into the workspace for use in downstream job.
       - persist_to_workspace:
