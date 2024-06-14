@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
 
 const TEST_COUNT = 200;
-const SKIP_PCT = 1;
-const FAIL_PCT = 5;
+const SKIP_PCT = 5;
+const FAIL_PCT = 2;
 
 test.describe("two", () => {
   for (let i = 1; i <= TEST_COUNT; i++) {
