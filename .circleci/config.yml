@@ -22,10 +22,11 @@ jobs:
           mkdir -p workspace
           npm install
           TEST_FILES=$(circleci tests glob "/**/*.spec.ts")
+          echo $TEST_FILES
           npx playwright --version > workspace/playwright-version.txt
           PLAYWRIGHT_BLOB_OUTPUT_DIR=workspace/blob-report
           PLAYWRIGHT_BLOB_OUTPUT_NAME=report-$CIRCLE_NODE_INDEX.zip
-          echo $TEST_FILES | circleci tests run --command="xargs npx playwright test --reporter=blob --verbose --split-by=timings --timings-type=classname"
+          echo $TEST_FILES | circleci tests run --command="xargs npx playwright test --reporter=blob" --verbose --split-by=timings --timings-type=classname
           ls -lR workspace
 
       - store_artifacts:
