@@ -25,8 +25,8 @@ jobs:
           PLAYWRIGHT_BLOB_OUTPUT_DIR=workspace/blob-report PLAYWRIGHT_BLOB_OUTPUT_NAME=report-$CIRCLE_NODE_INDEX.zip npm test -- --reporter=blob
           ls -lR workspace
 
-    - store_artifacts:
-        path: workspace/blob-reports
+      - store_artifacts:
+          path: workspace/blob-reports
 
       # Persist the specified paths (workspace/echo-output) into the workspace for use in downstream job.
       - persist_to_workspace:
