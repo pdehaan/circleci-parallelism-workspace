@@ -26,6 +26,8 @@ jobs:
 
       - store_artifacts:
           path: workspace/blob-report
+      - store_artifacts:
+          path: workspace/playwright-version.txt
 
       # Persist the specified paths (workspace/echo-output) into the workspace for use in downstream job.
       - persist_to_workspace:
@@ -35,7 +37,7 @@ jobs:
           # Must be relative path from root
           paths:
             - playwright-version.txt
-            - blob-report
+            - blob-report/*.zip
 
   downstream:
     # executor: my-executor
@@ -48,7 +50,7 @@ jobs:
           at: workspace
 
       - run: |
-          cat ~/app/workspace/echo-output
+          cat ~/app/workspace/playwright-version.txt
 
 workflows:
   btd:
