@@ -12,8 +12,8 @@ jobs:
     steps:
       - run: |
           mkdir -p workspace
-          echo "Hello, world!" > workspace/echo-output
-          npm ci
+          node --version > workspace/echo-output
+          npm i
 
       # Persist the specified paths (workspace/echo-output) into the workspace for use in downstream job.
       - persist_to_workspace:
