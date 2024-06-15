@@ -23,11 +23,16 @@ jobs:
           npm install
           TEST_FILES=$(circleci tests glob "/**/*.spec.ts")
           echo $TEST_FILES
+      - run: |
           npx playwright --version > workspace/playwright-version.txt
-          PLAYWRIGHT_BLOB_OUTPUT_DIR=workspace/blob-report
-          PLAYWRIGHT_BLOB_OUTPUT_NAME=report-$CIRCLE_NODE_INDEX.zip
-          echo $TEST_FILES | circleci tests run --command="xargs npx playwright test" --verbose --split-by=timings --timings-type=classname
-          ls -lR workspace
+      - run:
+          name: Run Tests
+          no_output_timeout: 20m
+          command: |
+              PLAYWRIGHT_BLOB_OUTPUT_DIR=workspace/blob-report
+              PLAYWRIGHT_BLOB_OUTPUT_NAME=report-$CIRCLE_NODE_INDEX.zip
+              echo $TEST_FILES | circleci tests run --command="xargs npx playwright test" --verbose --split-by=timings --timings-type=classname
+              # ls -lR workspace
 
       - store_artifacts:
           path: workspace/blob-report
